@@ -1,0 +1,26 @@
+// ============================================
+// B HAN — Firebase Storage Security Rules
+// ============================================
+// Deploy in Firebase Console → Storage → Rules
+// These rules allow product image uploads from admin
+// Replace the default rules with these:
+
+rules_version = '2';
+service firebase.storage {
+  match /b/{bucket}/o {
+    // Product images: anyone can read, anyone can write
+    // (Admin panel is the only place that writes — protected by admin password)
+    // For tighter security, set up Cloud Functions admin auth and use:
+    //   allow write: if request.auth != null && request.auth.token.admin == true;
+    match /products/{file=**} {
+      allow read: if true;
+      allow write: if request.resource.size < 5 * 1024 * 1024
+                   && request.resource.contentType.matches('image/.*');
+    }
+
+    // Block everything else
+    match /{allPaths=**} {
+      allow read, write: if false;
+    }
+  }
+}
