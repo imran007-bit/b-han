@@ -1,0 +1,62 @@
+═══════════════════════════════════════════════════
+ B HAN — PLAY STORE PUBLICATION RUNBOOK (final)
+═══════════════════════════════════════════════════
+
+PHASE 0 — DEPLOY THIS BUILD (15 min)
+  [ ] Delete old files in github.com/imran007-bit/b-han
+  [ ] Upload ALL files from this zip (keep folders: icons/, .well-known/)
+      NEW files this build: vercel.json, PUBLISH-CHECKLIST.txt
+  [ ] Vercel auto-deploys → open b-han.vercel.app, hard-refresh (Cmd+Shift+R)
+  [ ] Accept the "New version available — Update" bar if shown
+
+PHASE 1 — FIREBASE ADMIN LOCKDOWN (5 min, one-time — REQUIRED)
+  [ ] Firebase Console → Authentication → Users → copy YOUR UID
+  [ ] Firestore → Start collection → id: admins → Doc ID: <YOUR UID>
+      → field: role = owner → Save
+  [ ] Firestore → Rules → paste full contents of firestore.rules → Publish
+  [ ] Test: open /control-bhan-2025.html → login with YOUR email+password
+  (Without this step the new rules will lock the admin panel out!)
+
+PHASE 2 — STORE SETUP (1 day)
+  [ ] play.google.com/console → pay $25 → verify identity (passport/ARC)
+  [ ] Create app: "b·han — K-Beauty from Seoul" / Shopping / Free
+  [ ] Store listing: paste texts from STORE-LISTING.txt
+      Upload: app-icon-512.png, feature-graphic.png, 4 screenshots
+  [ ] Privacy policy URL: https://b-han.vercel.app/privacy.html
+  [ ] Content rating questionnaire → Shopping → Everyone
+  [ ] Data safety: collects name/email/phone/address for orders,
+      encrypted in transit, not shared, deletable on request
+
+PHASE 3 — BUILD THE ANDROID APP (1 hour)
+  [ ] pwabuilder.com → enter https://b-han.vercel.app → Package for Android
+  [ ] Download the .aab + note the SHA256 fingerprint shown
+  [ ] Edit .well-known/assetlinks.json → replace placeholder with SHA256
+  [ ] Push assetlinks.json to GitHub → wait for Vercel deploy
+  [ ] Verify: b-han.vercel.app/.well-known/assetlinks.json shows your SHA256
+
+PHASE 4 — CLOSED TESTING (14 days, mandatory)
+  [ ] Play Console → Testing → Closed testing → create release → upload .aab
+  [ ] Add 12+ tester Gmail addresses (cricket team!)
+  [ ] Share the opt-in link in the team WhatsApp group
+  [ ] Testers: open link → opt in → install from Play Store → use the app
+      a few times a week for 14 days (browse, cart, register, track)
+  [ ] Keep 12+ opted-in for 14 CONTINUOUS days
+
+PHASE 5 — GO LIVE
+  [ ] Dashboard → Apply for production access → answer questionnaire
+  [ ] After approval: Production → create release → same .aab → submit
+  [ ] Review takes ~3-7 days → LIVE on Play Store!
+
+PHASE 6 — LAUNCH DAY
+  [ ] Admin → Settings → set friend's bKash agent number
+  [ ] Place 1 real test order end-to-end (order → bKash → confirm → track)
+  [ ] Post Play Store link in FB groups + TikTok Olive Young video
+  [ ] First 50 customers: WELCOME20 coupon
+
+DESIGN: Hologram celadon theme (v11). SECURITY: ALL HARDENED ✓
+  Auth: Firebase server-side password hashing + email verification
+  Admin: Firebase login + admins allowlist + 4h session + rate limit
+  Data: owner-only Firestore rules, deny-all catchall
+  IDs: 852-billion-combination order IDs (anti-enumeration)
+  Input: XSS escaping (154 call sites), URL allowlist, sanitized lookups
+  Headers: CSP (app+admin), HSTS, X-Frame DENY, nosniff, Permissions-Policy
