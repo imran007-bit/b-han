@@ -1,4 +1,0 @@
-User-agent: *
-Disallow: /control-bhan-2025.html
-Disallow: /admin.html
-Disallow: /admin
