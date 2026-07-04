@@ -1,0 +1,57 @@
+═══════════════════════════════════════════════════════
+ B HAN — UPDATE GUIDE (kon change e kon file lagbe)
+═══════════════════════════════════════════════════════
+
+🎯 GOLDEN RULE: Tomar app ekta PWA. Google Play er app ta
+shudhu ekta "shell" jeta b-han.vercel.app dekhay.
+Tai GitHub e push korlei SHOB user update pay —
+GOOGLE PLAY E ABAR SUBMIT KORA LAGE NA! (99% khetre)
+
+━━━ LEVEL 0: KONO FILE LAGBE NA (Admin panel e koro) ━━━
+Product add/edit/delete/photo ..... Admin → Products
+Dam change / sale price ........... Admin → Products
+Coupon banano/bondho .............. Admin → Coupons
+Order status/tracking update ...... Admin → Orders
+Hero title/subtitle/offer text .... Admin → Settings
+Announcement bar text ............. Admin → Settings
+WhatsApp/bKash/Nagad number ....... Admin → Settings
+Shipping fee / free-ship limit .... Admin → Settings
+Categories ........................ Admin → Settings
+
+━━━ LEVEL 1: EKTA MATRO FILE change + GitHub push ━━━
+Design/color/font/animation ....... index.html (CSS)
+Customer app feature/page/button .. app.js
+Admin panel feature ............... admin.js
+Skin camera logic ................. skin-camera.js
+Privacy/Terms text ................ privacy.html / terms.html
+
+⚠️ SHOB LEVEL 1 change er sathe: sw.js e cache version
++1 koro (bhan-v17 → bhan-v18). Ei ek line e user ra
+"New version — Update" banner pabe.
+
+━━━ LEVEL 2: KHUB KOM lagbe (rare) ━━━
+Firebase settings change .......... firebase-config.js
+Data layer / security logic ....... data.js
+Database rules .................... firestore.rules (Firebase
+                                    Console e paste, GitHub na)
+Server headers .................... vercel.json
+
+━━━ LEVEL 3: GOOGLE PLAY E ABAR SUBMIT (khub e rare) ━━━
+Shudhu ei gulo hole notun AAB banate hobe (PWABuilder):
+  × App er NAM change (Play Store e)
+  × App ICON change
+  × Package name change
+  × Store listing screenshot/description
+Eigulao "update" hishebe jay — puro notun app na.
+
+━━━ UPDATE WORKFLOW (Level 1 example) ━━━
+1. Amake bolo ki change chao
+2. Ami SHUDHU sei file ta diye dibo (e.g. app.js)
+3. GitHub e SHUDHU oi file replace koro + sw.js version bump
+4. Vercel auto-deploy (1 min)
+5. User ra app khullei update banner pabe → tap → notun version
+6. Google Play e KICHU korte hobe na ✓
+
+━━━ VERSION HISTORY TRACK ━━━
+sw.js er 'bhan-vXX' number ta i tomar app version.
+Prottek push e +1 koro, tahole confusion hobe na.
